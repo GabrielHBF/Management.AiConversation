@@ -14,6 +14,9 @@ public static class SettingsExtensions
 		settings.ChatGptSettings.ApiKey = GetEnvOrDefault("Chat_Gpt_Api_Key", settings.ChatGptSettings.ApiKey);
 		settings.ChatGptSettings.Url = GetEnvOrDefault("Chat_Gtp_Url", settings.ChatGptSettings.Url);
 		settings.ChatGptSettings.Model = GetEnvOrDefault("Chat_Gpt_Model", settings.ChatGptSettings.Model);
+		settings.NvidiaAiSettings.ModelID = GetEnvOrDefault("Nvidia_Ai_Model_ID", settings.NvidiaAiSettings.ModelID);
+		settings.NvidiaAiSettings.ApiKey = GetEnvOrDefault("Nvidia_Ai_Api_Key", settings.NvidiaAiSettings.ApiKey);
+		settings.NvidiaAiSettings.Url = GetEnvOrDefault("Nvidia_Ai_Url", settings.NvidiaAiSettings.Url);
 
 		return settings;
 	}

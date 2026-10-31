@@ -16,6 +16,11 @@ public static class HttpClientExtensions
 			client.DefaultRequestHeaders.Add("OpenAI-Beta", settings.ChatGptSettings.Model);
 		});
 
+		services.AddHttpClient(IaConversationsConstants.NvidiaAiClient, client =>
+		{
+			client.Timeout = Timeout.InfiniteTimeSpan;
+		});
+
 		return services;
 	}
 }

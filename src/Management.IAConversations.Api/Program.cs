@@ -20,7 +20,7 @@ builder.Services
 	.AddDomainServices()
 	.AddRepositories()
 	.AddEndpointsApiExplorer()
-	.AddKernelPlugins()
+	.AddKernelPlugins(applicationSettings)
 	.AddMediator()
 	.AddControllers();
 
