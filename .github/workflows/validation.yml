@@ -24,7 +24,7 @@ jobs:
       run: dotnet restore src/Management.AiConversations.slnx
 
     - name: Verificação de Indentação (Lint)
-      run: dotnet format src/.editorconfig --verify-no-changes --verbosity diagnostic
+      run: dotnet format src/Management.AiConversations.slnx --verify-no-changes --verbosity diagnostic
 
     - name: Build Check
       run: dotnet build src/Management.AiConversations.slnx --no-restore --configuration Release
