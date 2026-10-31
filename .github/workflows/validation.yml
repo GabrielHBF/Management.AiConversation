@@ -21,7 +21,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore src/Management.AiConversations.slnx
 
     - name: Verificação de Indentação (Lint)
       run: dotnet format --verify-no-changes --verbosity diagnostic
