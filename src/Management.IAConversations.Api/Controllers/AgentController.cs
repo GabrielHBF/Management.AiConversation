@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Management.IAConversations.Api.Controllers
 {
-	[Authorize]
 	[Route("api/v1/agent")]
 	[ApiController]
 	public class AgentController(IWaiter commandMediator) : ControllerBase
