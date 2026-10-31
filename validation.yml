@@ -50,4 +50,11 @@ jobs:
     displayName: Run build 
     inputs:
       command: 'build'
-      projects: 'src/management.IAConversations.Api/management.IAConversations.Api.csproj'
+      projects: 'src/Management.IAConversations.Api/Management.IAConversations.Api.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: Run tests
+    inputs:
+      command: 'test'
+      projects: 'src/Management.AiConversations.slnx'
+      arguments: '--no-build --logger "trx;LogFileName=test-results.trx" --results-directory $(Agent.TempDirectory)/TestResults'
