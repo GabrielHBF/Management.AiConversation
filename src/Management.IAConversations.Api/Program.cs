@@ -1,6 +1,5 @@
 ﻿using Management.IAConversations.CrossCutting.Extensions;
 using Management.IAConversations.CrossCutting.Models;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
