@@ -21,15 +21,14 @@ builder.Services
 	.AddRepositories()
 	.AddEndpointsApiExplorer()
 	.AddKernelPlugins()
-	.AddMediator();
+	.AddMediator()
+	.AddControllers();
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapOpenApi();
 app.UseSpecification();
 app.MapControllers();
