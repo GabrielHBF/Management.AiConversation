@@ -3,6 +3,7 @@
 public static class IaConversationsConstants
 {
 	public const string ChatGptClient = "Management.OpenAI.Api";
+	public const string NvidiaAiClient = "Management.NvidiaAi.Api";
 
 	public static class OpenAiDocumentValidation
 	{
