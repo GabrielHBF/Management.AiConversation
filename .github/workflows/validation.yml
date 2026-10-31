@@ -1,0 +1,33 @@
+name: PR Validation (Code Quality)
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  quality-gate:
+    name: Check Quality & Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Verificação de Indentação (Lint)
+      run: dotnet format --verify-no-changes --verbosity diagnostic
+
+    - name: Build Check
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Unit Tests
+      run: dotnet test --no-build --configuration Release
