@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.AspNetCore.OpenApi.Generated</InterceptorsNamespaces>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.17.14" />
+		<PackageReference Include="MongoDB.Driver.Core.Extensions.DiagnosticSources" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Management.IAConversations.Application\Management.IAConversations.Application.csproj" />
+	  <ProjectReference Include="..\Management.IAConversations.Infrastructure\Management.IAConversations.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/Adapters/" />
+  <Folder Name="/Adapters/Input/">
+    <Project Path="Management.IAConversations.Api/Management.IAConversations.Api.csproj" />
+  </Folder>
+  <Folder Name="/Adapters/Output/">
+    <Project Path="Management.IAConversations.Infrastructure/Management.IAConversations.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Core/">
+    <Project Path="Management.IAConversations.Domain/Management.IAConversations.Domain.csproj" />
+  </Folder>
+  <Folder Name="/IoC/">
+    <Project Path="Management.IAConversations.CrossCutting/Management.IAConversations.CrossCutting.csproj" />
+  </Folder>
+  <Folder Name="/Ports/">
+    <Project Path="Management.IAConversations.Application/Management.IAConversations.Application.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="../.dockerignore" />
+    <File Path="../.gitignore" />
+    <File Path="../docker-compose.yml" />
+    <File Path="../Dockerfile" />
+    <File Path="../nuget.config" />
+    <File Path="../validation.yml" />
+    <File Path=".editorconfig" />
+  </Folder>
+</Solution>

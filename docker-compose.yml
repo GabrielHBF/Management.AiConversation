@@ -1,0 +1,14 @@
+version: "0.1"
+
+services:
+
+  management-iaconversation-api:
+    container_name: management-iaconversation-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: management-iaconversation-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "8074:8080"
