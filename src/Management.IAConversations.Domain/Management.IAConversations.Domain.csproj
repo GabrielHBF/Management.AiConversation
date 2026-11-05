@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="HelpWaiter" Version="1.1.2" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.81.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.81.0-alpha" />
     <PackageReference Include="MongoDB.Bson" Version="3.13.0" />
   </ItemGroup>
 
