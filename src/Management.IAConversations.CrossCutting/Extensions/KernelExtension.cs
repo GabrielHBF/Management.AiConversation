@@ -28,7 +28,7 @@ public static class KernelExtension
 
 			var kernel = builder.Build();
 
-			kernel.Plugins.AddFromType<KenelPluginsGovernaments>("governments_leads", sp);
+			kernel.Plugins.AddFromType<KenelPluginsGovernaments>("Functions", sp);
 
 			return kernel;
 		});
