@@ -47,7 +47,7 @@ public class SendConversationMessageCommandHandler(
 
 			var sessionId = resultNewSession.Value.Id;
 
-			var leadEntity = LeadMapper.ToNewEntity(sessionId);
+			var leadEntity = SessionMapper.ToNewEntity(sessionId);
 
 			conversationId = leadEntity.Id.ToString();
 
