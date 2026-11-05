@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Agents\Prompts\" />
     <Folder Include="OpenAI\Models\Response\Types\" />
   </ItemGroup>
 
