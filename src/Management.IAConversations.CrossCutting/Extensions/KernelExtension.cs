@@ -26,7 +26,19 @@ public static class KernelExtension
 			endpoint: new Uri(settings.OllamaSettings.Endpoint),
 			serviceId: IaConversationsConstants.OllamaClient);
 
-		builder.Plugins.AddFromType<KenelPluginsGovernaments>("Functions");
+		services.AddScoped<KenelPluginsFunctions>();
+
+		services.AddTransient<KernelPluginCollection>(sp =>
+		{
+			var plugins = new KernelPluginCollection();
+
+			var governancePlugin =
+				sp.GetRequiredService<KenelPluginsFunctions>();
+
+			plugins.AddFromObject(governancePlugin, "Functions", sp);
+
+			return plugins;
+		});
 
 		return services;
 	}
