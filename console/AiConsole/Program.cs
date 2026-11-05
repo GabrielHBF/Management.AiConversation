@@ -15,7 +15,7 @@ while (true)
         break;
 
     var response = await httpClient.PostAsJsonAsync(
-        "/api/chat",
+        "/api/v1/chat/jarvis",
         new { Message = message });
 
     if (!response.IsSuccessStatusCode)

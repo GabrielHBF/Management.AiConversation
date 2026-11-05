@@ -56,7 +56,7 @@ public class ChatController(IWaiter commandMediator) : ControllerBase
 		var conversationId = Request.Cookies["conversation_id"];
 
 		var result = await _commandMediator.SendCommandAsync(new
-			SendConversationMessageCommand(message, conversationId),
+			ConversationAiChatJarvisCommand(message, conversationId),
 			cancellationToken);
 
 		if (result.IsFailure)
