@@ -2,7 +2,7 @@
 
 namespace Management.IAConversations.Application.Mapper;
 
-public static class LeadMapper
+public static class SessionMapper
 {
 	public static Session ToNewEntity(string sessionId)
 	{
