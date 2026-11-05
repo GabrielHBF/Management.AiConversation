@@ -13,6 +13,9 @@ public static class AiErrors
 	public static Error AgentNotFoundError => new("AgentNotFoundError", $"The specified agent could not be found. {TechnicalMessage}");
 	public static Error AgentAlreadyExistsError => new("AgentAlreadyExistsError", $"The specified agent already exists and cannot be added again. {TechnicalMessage}");
 	public static Error KernelFunctionNotFoundError => new("KernelFunctionNotFoundError", $"The requested kernel function was not found. Message : {TechnicalMessage}");
+	public static Error JarvisPromptNotFound => new("JarvisPromptNotFound", "The Jarvis system prompt could not be found.");
+	public static Error JarvisResponseNotGenerated => new("JarvisResponseNotGenerated", "Unable to generate a response for the provided message.");
+	public static Error KernelFunctionNotFound => new("KernelFunctionNotFound", "The requested function was not found or is not registered in the Semantic Kernel.");
 
 	public static void SetTechnicalMessage(string technicalMessage)
 	{
