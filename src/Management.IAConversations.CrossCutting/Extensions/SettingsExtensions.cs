@@ -17,6 +17,9 @@ public static class SettingsExtensions
 		settings.NvidiaAiSettings.ModelID = GetEnvOrDefault("Nvidia_Ai_Model_ID", settings.NvidiaAiSettings.ModelID);
 		settings.NvidiaAiSettings.ApiKey = GetEnvOrDefault("Nvidia_Ai_Api_Key", settings.NvidiaAiSettings.ApiKey);
 		settings.NvidiaAiSettings.Url = GetEnvOrDefault("Nvidia_Ai_Url", settings.NvidiaAiSettings.Url);
+		settings.OllamaSettings.Endpoint = GetEnvOrDefault("OLLAMA_ENDPOINT", settings.OllamaSettings.Endpoint);
+		settings.OllamaSettings.EmbeddingModel = GetEnvOrDefault("OLLAMA_EMBEDDING_MODEL", settings.OllamaSettings.EmbeddingModel);
+		settings.OllamaSettings.TextModel = GetEnvOrDefault("OLLAMA_TEXT_MODEL", settings.OllamaSettings.TextModel);
 
 		return settings;
 	}
