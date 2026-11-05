@@ -1,6 +1,5 @@
 ﻿using Management.IAConversations.Application.Response;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 var httpClient = new HttpClient
 {
