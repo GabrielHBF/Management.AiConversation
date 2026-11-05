@@ -10,33 +10,23 @@ public static class KernelExtension
 {
 	public static IServiceCollection AddKernelPlugins(this IServiceCollection services, ISettings settings)
 	{
-		services.AddKernel();
+		var builder = services.AddKernel();
 
-		services.AddTransient<Kernel>(sp =>
-		{
-			var httpClient = sp.GetRequiredService<IHttpClientFactory>()
-			.CreateClient(IaConversationsConstants.NvidiaAiClient);
+		var httpClient = new HttpClient();
 
-			var builder = Kernel.CreateBuilder();
+		builder.AddOpenAIChatCompletion(
+			modelId: settings.NvidiaAiSettings.ModelID,
+			endpoint: new Uri(settings.NvidiaAiSettings.Url),
+			apiKey: settings.NvidiaAiSettings.ApiKey,
+			serviceId: IaConversationsConstants.NvidiaAiClient,
+			httpClient: httpClient);
 
-			builder.AddOpenAIChatCompletion(
-				modelId: settings.NvidiaAiSettings.ModelID,
-				endpoint: new Uri(settings.NvidiaAiSettings.Url),
-				apiKey: settings.NvidiaAiSettings.ApiKey,
-				serviceId: IaConversationsConstants.NvidiaAiClient,
-				httpClient: httpClient);
+		builder.AddOllamaChatCompletion(
+			modelId: settings.OllamaSettings.TextModel,
+			endpoint: new Uri(settings.OllamaSettings.Endpoint),
+			serviceId: IaConversationsConstants.OllamaClient);
 
-			builder.AddOllamaChatCompletion(
-				modelId: settings.OllamaSettings.TextModel,
-				endpoint: new Uri(settings.OllamaSettings.Endpoint),
-				serviceId: IaConversationsConstants.OllamaClient);
-
-			var kernel = builder.Build();
-
-			kernel.Plugins.AddFromType<KenelPluginsGovernaments>("Functions", sp);
-
-			return kernel;
-		});
+		builder.Plugins.AddFromType<KenelPluginsGovernaments>("Functions");
 
 		return services;
 	}
