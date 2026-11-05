@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Management.IAConversations.Application\Management.IAConversations.Application.csproj" />
+  </ItemGroup>
+
 </Project>

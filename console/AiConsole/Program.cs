@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using Management.IAConversations.Application.Response;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 var httpClient = new HttpClient
 {
@@ -24,7 +26,7 @@ while (true)
         continue;
     }
 
-    var result = await response.Content.ReadAsStringAsync();
+    var result = await response.Content.ReadFromJsonAsync<ConversationChatResponse>();
 
-    Console.WriteLine($"Jarvis: {result}");
+    Console.WriteLine($"Jarvis: {result!.MessageResponse}");
 }
