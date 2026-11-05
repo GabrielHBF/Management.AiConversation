@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Management.IAConversations.Application\Management.IAConversations.Application.csproj" />
+    <ProjectReference Include="..\..\src\Management.IAConversations.Infrastructure\Management.IAConversations.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
