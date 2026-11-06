@@ -1,11 +1,86 @@
 ﻿using AiConsole.Interfaces;
+using System.Speech.Synthesis;
 
 namespace AiConsole.Services.Translate;
 
 public class TextToSpeechService : ITextToSpeechService
 {
-    public Task SpeakAsync(string text, CancellationToken cancellationToken = default)
+    private readonly SpeechSynthesizer _synthesizer = new();
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+
+    public TextToSpeechService()
     {
-        throw new NotImplementedException();
+        _synthesizer.SetOutputToDefaultAudioDevice();
+
+        var portugueseVoice = _synthesizer
+            .GetInstalledVoices()
+            .FirstOrDefault(voice =>
+                voice.Enabled &&
+                voice.VoiceInfo.Culture.Name.Equals(
+                    "pt-BR",
+                    StringComparison.OrdinalIgnoreCase));
+
+        if (portugueseVoice is not null)
+        {
+            _synthesizer.SelectVoice(portugueseVoice.VoiceInfo.Name);
+        }
+    }
+
+    public async Task SpeakAsync(string text, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return;
+
+        await _semaphore.WaitAsync(cancellationToken);
+
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            EventHandler<SpeakCompletedEventArgs>? handler = null;
+
+            handler = (_, args) =>
+            {
+                if (args.Error is not null)
+                {
+                    completion.TrySetException(args.Error);
+                }
+                else if (args.Cancelled)
+                {
+                    completion.TrySetCanceled(cancellationToken);
+                }
+                else
+                {
+                    completion.TrySetCanceled(cancellationToken);
+                }
+            };
+
+            _synthesizer.SpeakCompleted += handler;
+
+            using var registration = cancellationToken.Register(() => _synthesizer.SpeakAsyncCancelAll());
+
+            try
+            {
+                _synthesizer.SpeakAsync(text);
+
+                await completion.Task;
+            }
+            finally
+            {
+                _synthesizer.SpeakCompleted -= handler;
+            }
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
+    public void Dispose()
+    {
+        _synthesizer.Dispose();
+        _semaphore.Dispose();
     }
 }
