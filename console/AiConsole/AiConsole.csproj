@@ -18,8 +18,4 @@
     <ProjectReference Include="..\..\src\Management.IAConversations.CrossCutting\Management.IAConversations.CrossCutting.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
-
 </Project>
