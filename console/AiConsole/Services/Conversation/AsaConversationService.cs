@@ -1,4 +1,5 @@
 ﻿using AiConsole.Interfaces;
+using AiConsole.Services.Translate;
 using AiConsole.UI;
 using AiConsole.Utils.ResponseVoice;
 
@@ -40,7 +41,7 @@ public sealed class AsaConversationService(
 
                 Console.WriteLine("Transcrevendo áudio...");
 
-                message = await speechRecognitionService.TranscribeAsync(
+                message = await SpeechRecognitionService.TranscribeAsync(
                     audio,
                     cancellationToken);
 

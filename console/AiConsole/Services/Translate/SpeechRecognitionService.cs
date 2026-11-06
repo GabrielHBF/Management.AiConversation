@@ -19,9 +19,7 @@ public class SpeechRecognitionService : ISpeechRecognitionService
             .Build();
     }
 
-    public async Task<string> TranscribeAsync(
-        Stream audio,
-        CancellationToken cancellationToken = default)
+    public async Task<string> TranscribeAsync(Stream audio, CancellationToken cancellationToken = default)
     {
         if (audio.CanSeek)
             audio.Position = 0;
