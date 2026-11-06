@@ -15,6 +15,10 @@ builder.Services
 
 var host = builder.Build();
 
+Console.Title = "A.$.A";
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.Clear();
+
 var asa = host.Services.GetRequiredService<IAsaConversationService>();
 
 await asa.StartAsync();
