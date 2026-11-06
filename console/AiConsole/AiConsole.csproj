@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Management.IAConversations.Application\Management.IAConversations.Application.csproj" />
+    <ProjectReference Include="..\..\src\Management.IAConversations.CrossCutting\Management.IAConversations.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>
