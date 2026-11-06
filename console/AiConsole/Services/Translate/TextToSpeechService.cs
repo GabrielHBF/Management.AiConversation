@@ -11,19 +11,9 @@ public class TextToSpeechService : ITextToSpeechService
     public TextToSpeechService()
     {
         _synthesizer.SetOutputToDefaultAudioDevice();
-
-        var portugueseVoice = _synthesizer
-            .GetInstalledVoices()
-            .FirstOrDefault(voice =>
-                voice.Enabled &&
-                voice.VoiceInfo.Culture.Name.Equals(
-                    "pt-BR",
-                    StringComparison.OrdinalIgnoreCase));
-
-        if (portugueseVoice is not null)
-        {
-            _synthesizer.SelectVoice(portugueseVoice.VoiceInfo.Name);
-        }
+        _synthesizer.SelectVoice("Microsoft Daniel");
+        _synthesizer.Rate = 0;
+        _synthesizer.Volume = 100;
     }
 
     public async Task SpeakAsync(string text, CancellationToken cancellationToken = default)
