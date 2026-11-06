@@ -14,7 +14,7 @@ public static class Configurations
     {
         var consoleSettingsSection = configuration.GetSection("Settings:ConsoleSettings");
 
-        return consoleSettingsSection.Get<ConsoleSettings>()!; 
+        return consoleSettingsSection.Get<ConsoleSettings>()!;
     }
 
     public static IServiceCollection AddHttpClients(this IServiceCollection services, ConsoleSettings consoleSettings)
