@@ -1,10 +1,8 @@
 ﻿using AiConsole.Interfaces;
 using NAudio.Wave;
-using System.Runtime.Versioning;
 
 namespace AiConsole.Services.Translate;
 
-[SupportedOSPlatform("windows")]
 public class MicrophoneService : IMicrophoneService
 {
     private readonly SemaphoreSlim _semaphore = new(1, 1);

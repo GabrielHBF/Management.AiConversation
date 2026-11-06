@@ -1,5 +1,6 @@
 ﻿using AiConsole.Interfaces;
 using AiConsole.Services.Http.Clients;
+using AiConsole.Services.Translate;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,13 @@ public static class Configurations
         {
             client.BaseAddress = new Uri(consoleSettings.Url);
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddServices(this IServiceCollection services )
+    {
+        _ = services.AddSingleton<IMicrophoneService, MicrophoneService>();
 
         return services;
     }
