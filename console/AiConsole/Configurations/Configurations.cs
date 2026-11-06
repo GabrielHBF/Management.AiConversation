@@ -31,6 +31,7 @@ public static class Configurations
         services.AddSingleton<IMicrophoneService, MicrophoneService>();
         services.AddSingleton<ITextToSpeechService, TextToSpeechService>();
         services.AddSingleton<IAsaConversationService, AsaConversationService>();
+        services.AddSingleton<ISpeechRecognitionService, SpeechRecognitionService>();
 
         return services;
     }
