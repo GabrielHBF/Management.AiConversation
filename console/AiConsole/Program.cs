@@ -1,31 +1,11 @@
-﻿using Management.IAConversations.Application.Response;
-using System.Net.Http.Json;
+﻿using AiConsole.Configurations;
+using Microsoft.Extensions.Hosting;
 
-var httpClient = new HttpClient
-{
-    BaseAddress = new Uri("https://localhost:7159")
-};
 
-while (true)
-{
-    Console.Write("Você: ");
+var builder = Host.CreateApplicationBuilder(args);
+var consoleSettings = builder.Configuration.GetConsoleSettings();
+builder.Services
+    .AddHttpClients(consoleSettings)
+    .AddServices();
 
-    var message = Console.ReadLine();
-
-    if (message == "sair")
-        break;
-
-    var response = await httpClient.PostAsJsonAsync(
-        "/api/v1/chat/jarvis",
-        new { Message = message });
-
-    if (!response.IsSuccessStatusCode)
-    {
-        Console.WriteLine("Erro ao enviar mensagem.");
-        continue;
-    }
-
-    var result = await response.Content.ReadFromJsonAsync<ConversationChatResponse>();
-
-    Console.WriteLine($"Jarvis: {result!.MessageResponse}");
-}
+builder.Build();
