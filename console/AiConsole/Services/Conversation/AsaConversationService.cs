@@ -8,7 +8,8 @@ namespace AiConsole.Services.Conversation;
 public sealed class AsaConversationService(
     IAsaClient asaClient,
     ITextToSpeechService textToSpeechService,
-    IMicrophoneService microphoneService) : IAsaConversationService
+    IMicrophoneService microphoneService,
+    ISpeechRecognitionService speechRecognitionService) : IAsaConversationService
 {
     public async Task StartAsync(CancellationToken cancellationToken = default)
     {
@@ -41,9 +42,7 @@ public sealed class AsaConversationService(
 
                 Console.WriteLine("Transcrevendo áudio...");
 
-                message = await SpeechRecognitionService.TranscribeAsync(
-                    audio,
-                    cancellationToken);
+                message = await speechRecognitionService.TranscribeAsync(audio, cancellationToken);
 
                 if (string.IsNullOrWhiteSpace(message))
                 {
