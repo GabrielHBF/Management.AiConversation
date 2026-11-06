@@ -1,4 +1,5 @@
 ﻿using AiConsole.Configurations;
+using AiConsole.Services.Conversation;
 using Microsoft.Extensions.Hosting;
 
 
@@ -9,3 +10,7 @@ builder.Services
     .AddServices();
 
 builder.Build();
+
+var asa = host.Services.GetRequiredService<IJarvisConversationService>();
+
+await asa.StartAsync();
