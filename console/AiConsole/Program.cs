@@ -9,10 +9,3 @@ builder.Services
     .AddServices();
 
 builder.Build();
-
-while (true)
-{
-    Console.Write("Você: ");
-
-    Console.WriteLine($"Jarvis:");
-}
