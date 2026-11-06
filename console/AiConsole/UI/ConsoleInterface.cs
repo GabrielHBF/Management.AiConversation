@@ -64,4 +64,5 @@ public static class ConsoleInterface
         Console.Write("Você > ");
         Console.ResetColor();
     }
+
 }

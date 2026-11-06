@@ -18,7 +18,7 @@ public class MicrophoneService : IMicrophoneService
 
         try
         {
-            if (_microphone is null)
+            if (_microphone is not null)
                 throw new InvalidOperationException(
                     "Microphone recording is already active.");
 
