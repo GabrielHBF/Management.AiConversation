@@ -10,16 +10,16 @@ using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace Management.IAConversations.Application.Input.Commands;
 
-public class ConversationAiChatJarvisCommandHandler(
+public class ConversationAiChatAsaCommandHandler(
 	[FromKeyedServices(IaConversationsConstants.OllamaClient)]
 	IChatCompletionService chatCompletionService,
-	Kernel kernel) : ICommandHandler<ConversationAiChatJarvisCommand, Result<ConversationChatResponse>>
+	Kernel kernel) : ICommandHandler<ConversationAiChatAsaCommand, Result<ConversationChatResponse>>
 {
-	public async Task<Result<ConversationChatResponse>> HandleAsync(ConversationAiChatJarvisCommand request, CancellationToken cancellationToken = default(CancellationToken))
+	public async Task<Result<ConversationChatResponse>> HandleAsync(ConversationAiChatAsaCommand request, CancellationToken cancellationToken = default(CancellationToken))
 	{
 		var history = new ChatHistory();
 
-		history.AddSystemMessage(Path.Combine(AppContext.BaseDirectory, "Agents", "Prompts", "JarvisPrompt.md"));
+		history.AddSystemMessage(Path.Combine(AppContext.BaseDirectory, "Agents", "Prompts", "ASAPrompt.md"));
 		history.AddUserMessage(request.SendConversationRequest.Message);
 
 		var response = await chatCompletionService.GetChatMessageContentAsync(
