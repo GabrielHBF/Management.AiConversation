@@ -25,7 +25,7 @@ public static class Configurations
         return services;
     }
 
-    public static IServiceCollection AddServices(this IServiceCollection services )
+    public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddSingleton<IMicrophoneService, MicrophoneService>();
         services.AddSingleton<ITextToSpeechService, TextToSpeechService>();
