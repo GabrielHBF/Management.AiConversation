@@ -37,7 +37,7 @@ public static class ConsoleInterface
     public static void ShowJarvisMessage(string message)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.Write("JARVIS: ");
+        Console.Write("A$A: ");
         Console.ResetColor();
 
         Console.WriteLine(message);

@@ -38,6 +38,6 @@ public sealed class AsaConversationService(IAsaClient asaClient, ITextToSpeechSe
             await textToSpeechService.SpeakAsync(response.Value.MessageResponse, cancellationToken);
         }
 
-        Console.WriteLine("\nJarvis encerrado.");
+        Console.WriteLine("\nA$A encerrado.");
     }
 }
