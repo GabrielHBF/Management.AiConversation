@@ -14,7 +14,7 @@ public static class Configurations
         return consoleSettingsSection.Get<ConsoleSettings>()!;
     }
 
-    public static IServiceCollection HttpClient(this IServiceCollection services, ConsoleSettings consoleSettings)
+    public static IServiceCollection AddHttpClients(this IServiceCollection services, ConsoleSettings consoleSettings)
     {
         services.AddHttpClient<IAsaClient, AsaClient>(client =>
         {
