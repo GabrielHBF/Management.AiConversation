@@ -2,15 +2,22 @@
 using AiConsole.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 
 var builder = Host.CreateApplicationBuilder(args);
+builder.Logging.ClearProviders();
+
 var consoleSettings = builder.Configuration.GetConsoleSettings();
 builder.Services
     .AddHttpClients(consoleSettings)
     .AddServices();
 
 var host = builder.Build();
+
+Console.Title = "A.$.A";
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.Clear();
 
 var asa = host.Services.GetRequiredService<IAsaConversationService>();
 
