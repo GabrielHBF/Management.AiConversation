@@ -1,4 +1,5 @@
 ﻿using AiConsole.Interfaces;
+using AiConsole.Services.Conversation;
 using AiConsole.Services.Http.Clients;
 using AiConsole.Services.Translate;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,7 @@ public static class Configurations
     {
         services.AddSingleton<IMicrophoneService, MicrophoneService>();
         services.AddSingleton<ITextToSpeechService, TextToSpeechService>();
+        services.AddSingleton<IAsaConversationService, AsaConversationService>();
 
         return services;
     }
