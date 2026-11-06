@@ -1,4 +1,5 @@
 ﻿using AiConsole.Interfaces;
+using AiConsole.Services.Audio;
 using AiConsole.Services.Conversation;
 using AiConsole.Services.Http.Clients;
 using AiConsole.Services.Translate;

@@ -2,7 +2,7 @@
 using System.Text;
 using Whisper.net;
 
-namespace AiConsole.Services.Translate;
+namespace AiConsole.Services.Audio;
 
 public class SpeechRecognitionService : ISpeechRecognitionService
 {
