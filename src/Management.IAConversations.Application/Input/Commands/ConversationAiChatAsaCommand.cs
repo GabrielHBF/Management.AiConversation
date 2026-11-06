@@ -5,4 +5,4 @@ using Management.IAConversations.Domain.Results;
 
 namespace Management.IAConversations.Application.Input.Commands;
 
-public record class ConversationAiChatJarvisCommand(SendConversationRequest SendConversationRequest, string? ConversationId) : ICommand<Result<ConversationChatResponse>>;
+public record class ConversationAiChatAsaCommand(SendConversationRequest SendConversationRequest, string? ConversationId) : ICommand<Result<ConversationChatResponse>>;

@@ -1,4 +1,6 @@
 ﻿using AiConsole.Configurations;
+using AiConsole.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
@@ -8,4 +10,8 @@ builder.Services
     .AddHttpClients(consoleSettings)
     .AddServices();
 
-builder.Build();
+var host = builder.Build();
+
+var asa = host.Services.GetRequiredService<IAsaConversationService>();
+
+await asa.StartAsync();

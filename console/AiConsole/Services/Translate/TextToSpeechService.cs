@@ -12,6 +12,7 @@ public class TextToSpeechService : ITextToSpeechService
     {
         _synthesizer.SetOutputToDefaultAudioDevice();
         _synthesizer.SelectVoice("Microsoft Daniel");
+
         _synthesizer.Rate = 0;
         _synthesizer.Volume = 100;
     }
@@ -27,40 +28,7 @@ public class TextToSpeechService : ITextToSpeechService
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-            EventHandler<SpeakCompletedEventArgs>? handler = null;
-
-            handler = (_, args) =>
-            {
-                if (args.Error is not null)
-                {
-                    completion.TrySetException(args.Error);
-                }
-                else if (args.Cancelled)
-                {
-                    completion.TrySetCanceled(cancellationToken);
-                }
-                else
-                {
-                    completion.TrySetCanceled(cancellationToken);
-                }
-            };
-
-            _synthesizer.SpeakCompleted += handler;
-
-            using var registration = cancellationToken.Register(() => _synthesizer.SpeakAsyncCancelAll());
-
-            try
-            {
-                _synthesizer.SpeakAsync(text);
-
-                await completion.Task;
-            }
-            finally
-            {
-                _synthesizer.SpeakCompleted -= handler;
-            }
+            _synthesizer.Speak(text);
         }
         finally
         {
