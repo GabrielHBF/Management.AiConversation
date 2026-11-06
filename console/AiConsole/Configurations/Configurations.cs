@@ -13,7 +13,7 @@ public static class Configurations
     {
         var consoleSettingsSection = configuration.GetSection("Settings:ConsoleSettings");
 
-        return consoleSettingsSection.Get<ConsoleSettings>()!;
+        return consoleSettingsSection.Get<ConsoleSettings>()!; 
     }
 
     public static IServiceCollection AddHttpClients(this IServiceCollection services, ConsoleSettings consoleSettings)
@@ -26,12 +26,14 @@ public static class Configurations
         return services;
     }
 
-    public static IServiceCollection AddServices(this IServiceCollection services)
+    public static IServiceCollection AddServices(this IServiceCollection services, string modelPath)
     {
         services.AddSingleton<IMicrophoneService, MicrophoneService>();
         services.AddSingleton<ITextToSpeechService, TextToSpeechService>();
         services.AddSingleton<IAsaConversationService, AsaConversationService>();
         services.AddSingleton<ISpeechRecognitionService, SpeechRecognitionService>();
+
+        services.AddSingleton<ISpeechRecognitionService>(_ => new SpeechRecognitionService(modelPath));
 
         return services;
     }
