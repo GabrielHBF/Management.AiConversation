@@ -30,7 +30,7 @@ public class ConversationAiChatAsaCommandHandler(
 		if (response is null || string.IsNullOrWhiteSpace(response.Content))
 		{
 			return Result<ConversationChatResponse>.Failure(
-				AiErrors.JarvisResponseNotGenerated);
+				AiErrors.AsaResponseNotGenerated);
 		}
 
 		var converationResponse = new ConversationChatResponse(
