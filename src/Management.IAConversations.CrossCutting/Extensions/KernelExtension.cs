@@ -14,6 +14,7 @@ public static class KernelExtension
 		var builder = services.AddKernel();
 
 		var httpClient = new HttpClient();
+		httpClient.Timeout = Timeout.InfiniteTimeSpan;
 
 		builder.AddOpenAIChatCompletion(
 			modelId: settings.NvidiaAiSettings.ModelID,
