@@ -25,7 +25,7 @@ public static class KernelExtension
 
 		builder.AddOllamaChatCompletion(
 			modelId: settings.OllamaSettings.TextModel,
-			endpoint: new Uri(settings.OllamaSettings.Endpoint),
+			httpClient: httpClient,
 			serviceId: IaConversationsConstants.OllamaClient);
 
 		services.AddScoped<KernelPluginsFunctions>();
