@@ -1,17 +1,33 @@
-﻿using Management.IAConversations.Application.Context;
-using Management.IAConversations.Domain.Interfaces;
+﻿using Management.IAConversations.Application.Constants;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Agents;
+using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;
 
 namespace Management.IAConversations.Infrastructure.Integrations.Plugins.Governaments;
 
-public class KenelPluginsFunctions(ISessionRespository sessionRespository,
-	ConversationContext conversationContext)
+public class KenelPluginsFunctions(
+	[FromKeyedServices(IaConversationsConstants.NvidiaAiClient)]
+	IChatCompletionService chatCompletionService,
+	Kernel kernel)
 {
-	[KernelFunction("get_session")]
-	[Description("Obtém informações de uma sessão.")]
-	public async Task<string> GetSessionAsync(string sessionId, CancellationToken cancellationToken)
+	[KernelFunction("gerar codigo")]
+	[Description("Gera código com base em uma descrição.")]
+	public async Task<string> GenerateCodeAsync(
+		[Description("A descrição do código a ser gerado.")]
+		string description,
+		CancellationToken cancellationToken)
 	{
-		return "Informações da sessão";
+		var history = new ChatHistory();
+
+		var agent = new ChatCompletionAgent
+		{
+			Name = "A$A_Code",
+
+			Instructions =
+
+			Kernel = kernel
+		};
 	}
 }
