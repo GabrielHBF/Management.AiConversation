@@ -6,7 +6,6 @@ public static class IaConversationsConstants
 	public const string NvidiaAiClient = "Management.NvidiaAi.Api";
 	public const string OllamaClient = "Management.Ollama.Api";
 
-
 	public const string DataPrefix = "data:";
 	public const string OutputTextDone = "agent.session.turn.output_text.done";
 	public const string RequiredAction = "agent.session.requires_action";
@@ -15,7 +14,6 @@ public static class IaConversationsConstants
 	public const string SessionFailed = "agent.session.failed";
 	public const string EnvironmentFailed = "agent.session.environment.failed";
 	public const string Error = "error";
-
 
 	public static class OpenAiDocumentValidation
 	{
