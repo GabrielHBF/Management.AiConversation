@@ -16,6 +16,18 @@ public static class HttpClientExtensions
 			client.DefaultRequestHeaders.Add("OpenAI-Beta", settings.ChatGptSettings.Model);
 		});
 
+		services.AddHttpClient(IaConversationsConstants.OllamaClient, client =>
+		{
+			client.BaseAddress = new Uri(settings.OllamaSettings.Endpoint);
+			client.Timeout = Timeout.InfiniteTimeSpan;
+		});
+
+		services.AddHttpClient(IaConversationsConstants.NvidiaAiClient, client =>
+		{
+			client.BaseAddress = new Uri(settings.NvidiaAiSettings.Url);
+			client.Timeout = Timeout.InfiniteTimeSpan;
+		});
+
 		return services;
 	}
 }

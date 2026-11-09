@@ -17,9 +17,13 @@ public class ConversationAiChatAsaCommandHandler(
 {
 	public async Task<Result<ConversationChatResponse>> HandleAsync(ConversationAiChatAsaCommand request, CancellationToken cancellationToken = default(CancellationToken))
 	{
+		var promptStream = Path.Combine(AppContext.BaseDirectory, "Agents", "Prompts", "ASA_Prompt.md");
+
+		var systemPrompt = await File.ReadAllTextAsync(promptStream, cancellationToken);
+
 		var history = new ChatHistory();
 
-		history.AddSystemMessage(Path.Combine(AppContext.BaseDirectory, "Agents", "Prompts", "ASAPrompt.md"));
+		history.AddSystemMessage(systemPrompt);
 		history.AddUserMessage(request.SendConversationRequest.Message);
 
 		var response = await chatCompletionService.GetChatMessageContentAsync(
@@ -30,7 +34,7 @@ public class ConversationAiChatAsaCommandHandler(
 		if (response is null || string.IsNullOrWhiteSpace(response.Content))
 		{
 			return Result<ConversationChatResponse>.Failure(
-				AiErrors.JarvisResponseNotGenerated);
+				AiErrors.AsaResponseNotGenerated);
 		}
 
 		var converationResponse = new ConversationChatResponse(

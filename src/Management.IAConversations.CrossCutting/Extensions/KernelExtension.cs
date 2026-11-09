@@ -11,20 +11,22 @@ public static class KernelExtension
 {
 	public static IServiceCollection AddKernelPlugins(this IServiceCollection services, ISettings settings)
 	{
+		var factory = services.BuildServiceProvider().GetRequiredService<IHttpClientFactory>();
+
 		var builder = services.AddKernel();
 
-		var httpClient = new HttpClient();
+		var httpClientNvidea = factory.CreateClient(IaConversationsConstants.NvidiaAiClient);
+		var httpClientOllama = factory.CreateClient(IaConversationsConstants.OllamaClient);
 
 		builder.AddOpenAIChatCompletion(
 			modelId: settings.NvidiaAiSettings.ModelID,
-			endpoint: new Uri(settings.NvidiaAiSettings.Url),
 			apiKey: settings.NvidiaAiSettings.ApiKey,
-			serviceId: IaConversationsConstants.NvidiaAiClient,
-			httpClient: httpClient);
+			httpClient: httpClientNvidea,
+			serviceId: IaConversationsConstants.NvidiaAiClient);
 
 		builder.AddOllamaChatCompletion(
 			modelId: settings.OllamaSettings.TextModel,
-			endpoint: new Uri(settings.OllamaSettings.Endpoint),
+			httpClient: httpClientOllama,
 			serviceId: IaConversationsConstants.OllamaClient);
 
 		services.AddScoped<KernelPluginsFunctions>();

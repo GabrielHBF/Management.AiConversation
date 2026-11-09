@@ -14,4 +14,13 @@
     <Folder Include="OpenAI\Models\Response\Types\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Agents\Prompts\ASAPrompt.md">
+      <LogicalName>Management.IAConversations.Application.Agents.Prompts.ASAPrompt.md</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agents\Prompts\ASA_CodePrompt.md">
+      <LogicalName>Management.IAConversations.Application.Agents.Prompts.ASA_CodePrompt.md</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
