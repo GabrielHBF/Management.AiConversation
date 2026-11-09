@@ -1,33 +1,18 @@
-﻿using Management.IAConversations.Application.Constants;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Management.IAConversations.Infrastructure.Integrations.Kernels.Agents;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Agents;
-using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;
 
-namespace Management.IAConversations.Infrastructure.Integrations.Plugins.Governaments;
+namespace Management.IAConversations.Infrastructure.Integrations.Plugins.Management;
 
-public class KenelPluginsFunctions(
-	[FromKeyedServices(IaConversationsConstants.NvidiaAiClient)]
-	IChatCompletionService chatCompletionService,
-	Kernel kernel)
+public sealed class KernelPluginsFunctions(AsaCodeAgent asaCodeAgent)
 {
-	[KernelFunction("gerar codigo")]
-	[Description("Gera código com base em uma descrição.")]
-	public async Task<string> GenerateCodeAsync(
-		[Description("A descrição do código a ser gerado.")]
+	[KernelFunction("gerar_codigo")]
+	[Description("Delegue ao agente especialista ASA_Code a tarefa de analisar e gerar código.")]
+	public Task<string> GenerateCodeAsync(
+		[Description("Descrição detalhada da tarefa de desenvolvimento.")]
 		string description,
-		CancellationToken cancellationToken)
+		CancellationToken cancellationToken = default)
 	{
-		var history = new ChatHistory();
-
-		var agent = new ChatCompletionAgent
-		{
-			Name = "A$A_Code",
-
-			Instructions =
-
-			Kernel = kernel
-		};
+		return asaCodeAgent.ExecuteAsync(description, cancellationToken);
 	}
 }
