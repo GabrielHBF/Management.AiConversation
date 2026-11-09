@@ -1,5 +1,6 @@
 ﻿using Management.IAConversations.Application.Constants;
 using Management.IAConversations.CrossCutting.Models;
+using Management.IAConversations.Infrastructure.Integrations.Kernels.Agents;
 using Management.IAConversations.Infrastructure.Integrations.Plugins.Management;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;

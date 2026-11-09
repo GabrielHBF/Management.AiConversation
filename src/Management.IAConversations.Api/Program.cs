@@ -22,6 +22,7 @@ builder.Services
 	.AddEndpointsApiExplorer()
 	.AddKernelPlugins(applicationSettings)
 	.AddMediator()
+	.AddAgents()
 	.AddControllers();
 
 var app = builder.Build();
