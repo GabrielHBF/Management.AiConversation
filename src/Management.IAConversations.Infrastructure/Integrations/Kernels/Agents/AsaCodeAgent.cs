@@ -9,8 +9,8 @@ public class AsaCodeAgent(Kernel kernel)
 {
 	private readonly ChatCompletionAgent _agent = new()
 	{
-		Name = "",
-		Instructions = "",
+		Name = IaConversationsConstants.Agents.AsaCode,
+		Instructions = Path.Combine(AppContext.BaseDirectory, "Agents", "Prompts", "ASA_CodePrompt.md"),
 		Kernel = kernel,
 		Arguments = new KernelArguments(
 			new PromptExecutionSettings
