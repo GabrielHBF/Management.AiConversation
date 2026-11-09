@@ -1,17 +1,18 @@
-﻿using Management.IAConversations.Application.Context;
-using Management.IAConversations.Domain.Interfaces;
+﻿using Management.IAConversations.Infrastructure.Integrations.Kernels.Agents;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 
-namespace Management.IAConversations.Infrastructure.Integrations.Plugins.Governaments;
+namespace Management.IAConversations.Infrastructure.Integrations.Plugins.Management;
 
-public class KenelPluginsFunctions(ISessionRespository sessionRespository,
-	ConversationContext conversationContext)
+public sealed class KernelPluginsFunctions(AsaCodeAgent asaCodeAgent)
 {
-	[KernelFunction("get_session")]
-	[Description("Obtém informações de uma sessão.")]
-	public async Task<string> GetSessionAsync(string sessionId, CancellationToken cancellationToken)
+	[KernelFunction("gerar_codigo")]
+	[Description("Delegue ao agente especialista ASA_Code a tarefa de analisar e gerar código.")]
+	public Task<string> GenerateCodeAsync(
+		[Description("Descrição detalhada da tarefa de desenvolvimento.")]
+		string description,
+		CancellationToken cancellationToken = default)
 	{
-		return "Informações da sessão";
+		return asaCodeAgent.ExecuteAsync(description, cancellationToken);
 	}
 }
