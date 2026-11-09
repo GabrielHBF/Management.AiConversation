@@ -1,6 +1,6 @@
 ﻿using Management.IAConversations.Application.Constants;
 using Management.IAConversations.CrossCutting.Models;
-using Management.IAConversations.Infrastructure.Integrations.Plugins.Governaments;
+using Management.IAConversations.Infrastructure.Integrations.Plugins.Management;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 
@@ -26,16 +26,16 @@ public static class KernelExtension
 			endpoint: new Uri(settings.OllamaSettings.Endpoint),
 			serviceId: IaConversationsConstants.OllamaClient);
 
-		services.AddScoped<KenelPluginsFunctions>();
+		services.AddScoped<KernelPluginsFunctions>();
 
 		services.AddTransient<KernelPluginCollection>(sp =>
 		{
 			var plugins = new KernelPluginCollection();
 
-			var governancePlugin =
-				sp.GetRequiredService<KenelPluginsFunctions>();
+			var functionsPlugin =
+				sp.GetRequiredService<KernelPluginsFunctions>();
 
-			plugins.AddFromObject(governancePlugin, "Functions", sp);
+			plugins.AddFromObject(functionsPlugin, "Functions", sp);
 
 			return plugins;
 		});
