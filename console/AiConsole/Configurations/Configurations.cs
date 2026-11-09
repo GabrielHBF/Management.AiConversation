@@ -22,6 +22,7 @@ public static class Configurations
         services.AddHttpClient<IAsaClient, AsaClient>(client =>
         {
             client.BaseAddress = new Uri(consoleSettings.Url);
+            client.Timeout = Timeout.InfiniteTimeSpan;
         });
 
         return services;

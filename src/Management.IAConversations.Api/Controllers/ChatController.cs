@@ -46,7 +46,7 @@ public class ChatController(IWaiter commandMediator) : ControllerBase
 		return Ok(result.Value);
 	}
 
-	[HttpPost("jarvis")]
+	[HttpPost("asa")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]

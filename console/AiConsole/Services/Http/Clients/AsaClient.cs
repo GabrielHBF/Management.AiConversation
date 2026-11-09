@@ -10,7 +10,7 @@ public class AsaClient(HttpClient httpClient) : IAsaClient
 {
     public async Task<Result<ConversationChatResponse>> SendMessageAsync(string message, CancellationToken cancellationToken = default)
     {
-        var response = await httpClient.PostAsJsonAsync("/api/v1/chat/jarvis", new { Message = message }, cancellationToken);
+        var response = await httpClient.PostAsJsonAsync("/api/v1/chat/asa", new { Message = message }, cancellationToken);
 
         if (!response.IsSuccessStatusCode)
         {
